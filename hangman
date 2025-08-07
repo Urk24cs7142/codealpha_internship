@@ -1,0 +1,25 @@
+import random
+
+words = ["apple", "banana", "grape", "peach", "mango"]
+word = random.choice(words)
+guessed = ["_"] * len(word)
+tries = 6
+
+print("Welcome to Hangman!")
+
+while tries > 0 and "_" in guessed:
+    print("\nWord:", " ".join(guessed))
+    guess = input("Guess a letter: ").lower()
+    
+    if guess in word:
+        for i, letter in enumerate(word):
+            if letter == guess:
+                guessed[i] = guess
+    else:
+        tries -= 1
+        print(f"Wrong! Tries left: {tries}")
+
+if "_" not in guessed:
+    print("\nCongratulations! You guessed the word:", word)
+else:
+    print("\nGame over! The word was:", word)
